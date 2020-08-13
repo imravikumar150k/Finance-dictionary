@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Finance Dictionary</title>
     <meta charset="utf-8">
@@ -20,27 +21,32 @@
             var keys = [];
             for (var key in dictionary) keys.push(key)
             $("#tags").autocomplete({
-              source: function(request, response) {
-              var results = $.ui.autocomplete.filter(keys, request.term);
+                source: function(request, response) {
+                    var results = $.ui.autocomplete.filter(keys, request.term);
+                    response(results.slice(0, 10));
 
-              response(results.slice(0, 10));
-              }
+                },
+                select: function(event, ui) {
+                    $("#Employee_txt").val(ui.item.label);
+                    var getID = ui.item.value;
+                    console.log(getID)
+                    getAns(getID);
+                }
             });
-//            $("#tags").autocomplete({
-// source: keys,
-// });
+          
         });
 
-        function getAns() {
-            var val = $("#tags").val();
-            document.getElementById("ans").innerHTML = '<p class="alert alert-success">'+dictionary[val]+"</p>"
+        function getAns(id) {
+
+            document.getElementById("ans").innerHTML = '<p class="alert alert-success">' + dictionary[id] + "</p>"
         }
     </script>
     <style type="text/css">
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
+
         .center {
             text-align: center
         }
@@ -67,11 +73,11 @@
     <div class="container">
         <div class=" col-xs-12 col-sm-offset-3 col-sm-6 dict">
             <div class="search ">
-                <h4 class="center">Finance Dictionary (Over 7k meanings)</h4>
+                <h4 class="center">Finance Dictionary</h4>
                 <div class="input-group">
                     <input type="text" class="form-control" id="tags">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" onclick="getAns()">Search it!</button>
+                        <button class="btn btn-primary" type="button">Search it!</button>
                     </span>
                 </div><br />
 
@@ -82,40 +88,6 @@
 
     </div>
 
-</body></html>
+</body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
