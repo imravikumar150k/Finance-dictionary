@@ -37,7 +37,7 @@
         });
 
         function getAns(id) {
-
+            document.getElementById("popular").style.display = "none";
             document.getElementById("ans").innerHTML = '<p class="alert alert-success">' + dictionary[id] + "</p>"
         }
     </script>
@@ -81,7 +81,7 @@
                     </span>
                 </div>
                 <br />
-                <h3>Popular Searches: Debt, Dividend, Strike Price</h3>
+                <h5 id="popular">Popular Searches: Debt, Dividend, Strike Price</h5>
                 <div id="ans"></div>
             </div>
 
